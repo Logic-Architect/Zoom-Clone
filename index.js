@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
+// CONFIGURING THE UUID 
+const {v4 : uuid4} = require('uuid');
+
 // SETTING UP THE VIEW ENGINE 
 app.set('view engine','ejs');
 app.set('views','./views');
