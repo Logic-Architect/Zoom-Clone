@@ -7,16 +7,36 @@
     <title>
         <%= title%>
     </title>
+
+    <!-- addin jquerry  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="/socket.io/socket.io.js " type="text/javascript"></script>
     <link rel="stylesheet" href="/css/index.css">
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script>
+        const ROOM_ID = "<%=roomId%>"
+        console.log(ROOM_ID)
+    </script>
 </head>
 <body>
     <p>Hello</p>
     <div id="video-grid">
         
     </div>
+    <div class="messages">
+        <ul>
+            
+        </ul>
+    </div>
+    <div id="text">
+        <input type="text" name="text" id="">
+    </div>
     <div id="room-id">
         <%= roomId%>
     </div>
+   
     <script src="/js/index.js"></script>
 </body>
 </html>
