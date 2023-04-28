@@ -15,7 +15,7 @@ var peer = new Peer(undefined, {
 let myVedioStream
 navigator.mediaDevices.getUserMedia({
     video: true,
-    audio: false
+    audio: true
 })
     .then(stream => {
         myVedioStream = stream;
@@ -77,3 +77,42 @@ const addVideoStream = (video, stream) => {
 }
 
 
+// Mute Unmute 
+$('.audio').on('click',()=>{
+    const enabled = myVedioStream.getAudioTracks()[0].enabled;
+    if(enabled){
+        myVedioStream.getAudioTracks()[0].enabled = false;
+        setUnmuteButton()
+    }
+    else{
+        myVedioStream.getAudioTracks()[0].enabled = true;
+        setMuteButton();
+    }
+})
+
+const setUnmuteButton = ()=>{
+    $('.audio').html(`<span>Unmute</span>`)
+}
+const setMuteButton = ()=>{
+    $('.audio').html('<span>Mute</span>')
+}
+
+// Show / Hide Video 
+$('.video').on('click',()=>{
+    const enabled = myVedioStream.getVideoTracks()[0].enabled;
+    if(enabled){
+        myVedioStream.getVideoTracks()[0].enabled = false;
+        setShowButton()
+    }
+    else{
+        myVedioStream.getVideoTracks()[0].enabled = true;
+        setHideButton();
+    }
+})
+const setShowButton = ()=>{
+    $('.video').html('<span>Show</span>')
+}
+
+const setHideButton = ()=>{
+    $('.video').html('<span>Hide</span>')
+}
