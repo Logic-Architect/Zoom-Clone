@@ -148,8 +148,12 @@ const setHideButton = () => {
 }
 
 
-$('.otherv').on('click', () => {
-    console.log('clicked')
-    $('.main-video video').removeClass('mainv').addClass('otherv');
-    $(this).addClass('mainv')
+
+$('.roomid').on('click', () => {
+    navigator.clipboard.writeText(ROOM_ID);
+    alert("Room Id Copied to Clipboard")
+})
+
+$('.chat-window').on('click',()=>{
+    $('#chatbox-window').toggle()
 })
