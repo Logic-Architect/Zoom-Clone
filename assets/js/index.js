@@ -1,118 +1,79 @@
-console.log("Scipt is running");
+console.log('Running')
+var createcount = 0;
 
-const socket = io('/')
-const videoGrid = document.getElementById('video-grid')
-
-const myVideo = document.createElement('video');
-myVideo.muted = false
-
-var peer = new Peer(undefined, {
-    path: '/peerjs',
-    host: '/',
-    port: 8000
-})
-
-let myVedioStream
-navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true
-})
-    .then(stream => {
-        myVedioStream = stream;
-        addVideoStream(myVideo, stream);
-
-        peer.on('call', function (call) {
-
-            call.answer(stream); // Answer the call with an A/V stream.
-            const video = document.createElement('video');
-            call.on('stream', userVideoStream => {
-                addVideoStream(video, userVideoStream);
-            });
-
-        });
-
-        socket.on('user-connected', (userId) => {
-            connectToNewUser(userId, stream);
+$('.create').on('click', (e) => {
+    createcount++;
+    if (createcount == 1) {
+        $('.create').fadeOut('3000')
+        $('.join').fadeOut('3000')
+        $('.submit-create').fadeIn('slow')
+        $('#create-room-form').fadeIn('slow')
+        $('#create-room-form').css({
+            'margin': '15px',
+            'padding': '5px',
+            'width': '95%',
+            'display': 'flex',
+            'flex-direction': 'column',
+            'justify-content': 'center',
+            'align-items': 'center',
+            'border-radius': ' 5px',
+            'border': '0px'
         })
-
-
-        let text = $('input');
-        console.log(text)
-
-        $('html').keydown((e) => {
-            if (e.which == 13 && text.val().length != 0) {
-                console.log(text.val())
-                socket.emit('message', text.val());
+        $('.roomid').fadeIn('slow')
+        createcount++;
+    }
+    else {
+        e.preventDefault();
+        console.log($('#usrname').val())
+        if ($('#usrname').val()) {
+            console.log("submit now only")
+            if ($('#usrname').val().length > 10) {
+                console.log('length exceeded')
+                alert("User Name should not Exceed 10 letters")
             }
+            else {
+                $('#abcd').submit();
+            }
+        }
+        else{
+            alert("Enter User Name")
+        }
+    }
+})
+
+console.log(roomId);
+$('.roomid').on('click', () => {
+    navigator.clipboard.writeText(roomId);
+    alert("Room Id Copied to Clipboard")
+})
+
+$('.join').on('click', (e) => {
+    createcount++;
+    if (createcount == 1) {
+        $('.create').fadeOut('3000')
+        $('.join').fadeOut('3000')
+        $('.submit-join').fadeIn('slow')
+        $('#join-room-form').css({
+            'margin': '15px',
+            'padding': '5px',
+            'width': '95%',
+            'display': 'flex',
+            'flex-direction': 'column',
+            'justify-content': 'center',
+            'align-items': 'center',
+            'border-radius': ' 5px',
+            'border': '0px'
         })
-
-        socket.on('createMessage', (message,user) => {
-            console.log('This is coming from server', message);
-            $('ul').append(`<li>${user}-->${message}</li>`)
-        })
-    });
-
-console.log('1', ROOM_ID);;
-// socket.emit('join-room', ROOM_ID);
-
-peer.on('open', id => {
-    socket.emit('join-room', ROOM_ID, id)
-})
-
-const connectToNewUser = (userId, stream) => {
-    console.log(userId);
-    const call = peer.call(userId, stream)
-    const video = document.createElement('video');
-    call.on('stream', userVideoStream => {
-        addVideoStream(video, userVideoStream)
-    })
-}
-
-const addVideoStream = (video, stream) => {
-    video.srcObject = stream;
-    video.addEventListener('loadedmetadata', () => {
-        video.play();
-    })
-    videoGrid.append(video);
-}
-
-
-// Mute Unmute 
-$('.audio').on('click',()=>{
-    const enabled = myVedioStream.getAudioTracks()[0].enabled;
-    if(enabled){
-        myVedioStream.getAudioTracks()[0].enabled = false;
-        setUnmuteButton()
+        $('.roomid').fadeIn('slow')
+        createcount++;
     }
-    else{
-        myVedioStream.getAudioTracks()[0].enabled = true;
-        setMuteButton();
+    else {
+        e.preventDefault();
+        const x = $('#roomid').val();
+        if(x.length!=36){
+            alert('Invalid Room Id');
+        }
+        else{
+        window.location.href='/'+x}
     }
 })
-
-const setUnmuteButton = ()=>{
-    $('.audio').html(`<span>Unmute</span>`)
-}
-const setMuteButton = ()=>{
-    $('.audio').html('<span>Mute</span>')
-}
-
-// Show / Hide Video 
-$('.video').on('click',()=>{
-    const enabled = myVedioStream.getVideoTracks()[0].enabled;
-    if(enabled){
-        myVedioStream.getVideoTracks()[0].enabled = false;
-        setShowButton()
-    }
-    else{
-        myVedioStream.getVideoTracks()[0].enabled = true;
-        setHideButton();
-    }
-})
-const setShowButton = ()=>{
-    $('.video').html('<span>Show</span>')
-}
-
-const setHideButton = ()=>{
-    $('.video').html('<span>Hide</span>')
-}
