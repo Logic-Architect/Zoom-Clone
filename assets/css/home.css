@@ -1,4 +1,123 @@
 body{
     margin: 0px;
-    color: red;
+    background-color: grey;
+    color: white;
+    overflow: hidden;
+}
+
+#sections{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+}
+.controls{
+    flex-basis: 4%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute;
+    left: 1px; */
+
+}
+.controls div{
+    margin: 5px;
+    width: 80%;
+    height: 40px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.controls div:hover{
+    box-shadow: 0px 0px 3px 3px rgb(121, 96, 96);
+}
+i{
+    font-size: 1.5rem;
+}
+#video-grid{
+    height: 100%;
+    flex-basis: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    border-right: 1px solid rgb(78, 69, 69);
+}
+#video-grid::-webkit-scrollbar{
+    display: none;
+}
+.main-video{
+   border-bottom: 1px solid grey;
+    /* overflow: scroll; */
+}
+.mainv{
+    width: 500px;
+    height: 400px;
+    margin: 10px;
+}
+.other-videos{
+   grid-area: other video;
+   overflow: scroll;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+.other-videos::-webkit-scrollbar {
+    display: none;
+}
+.otherv{
+    height: 300px;
+    width: 300px;
+    margin: 10px;
+}
+#chatbox{
+    height: 100%;
+    flex-basis: 24%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.heading{
+    text-align: center;
+    font-size: 1.6rem;
+    border-bottom: 1px solid rgb(83, 73, 73);
+}
+ul{
+    list-style: none;
+    padding: 0px;
+}
+li{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+#msg-user{
+    width: 25%;
+}
+#msg-content{
+    width: 70%;
+    margin-right: 10px;
+    text-align:justify ;
+    overflow-wrap: break-word;
+}
+span{
+    overflow-wrap: anywhere;
+    padding: 5px;
+}
+input{
+    width: 100%;
+    height: 2rem;
+    font-size: 1.3rem;
+    padding: 4px;
+}
+input:focus{
+    outline: none;
 }

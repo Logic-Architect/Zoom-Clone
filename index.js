@@ -34,13 +34,14 @@ app.use('/',require('./routes/index'));
 
 const io = require('socket.io')(server);
 io.on('connection',socket=>{
-    socket.on('join-room',(roomId,userId)=>{
+    socket.on('join-room',(roomId,userId,username)=>{
         console.log("Joined the room");
         socket.join(roomId);
         socket.to(roomId).emit('user-connected',userId);
 
         socket.on('message',message=>{
-            io.to(roomId).emit('createMessage',message,userId);
+            console.log(username)
+            io.to(roomId).emit('createMessage',message,username);
         })
     })
 })

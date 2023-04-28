@@ -70,10 +70,23 @@ $('.join').on('click', (e) => {
     else {
         e.preventDefault();
         const x = $('#roomid').val();
-        if(x.length!=36){
+        const y = $('#usrname2').val();
+        console.log(x.length)
+        console.log('qwer',y.length)
+        
+        if(x.length=='36'){
+            if(y.length>0){
+                if(y.length<=10){
+                    window.location.href='/'+x+'?username='+y
+                }else{
+                    alert("User Name should be at most 10 letter long")
+                }
+            }else{
+                alert('Enter User Name')
+            }
+        }else{
             alert('Invalid Room Id');
         }
-        else{
-        window.location.href='/'+x}
+
     }
 })

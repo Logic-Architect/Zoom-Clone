@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,9 @@
     </title>
 
     <!-- addin jquerry  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <script src="/socket.io/socket.io.js " type="text/javascript"></script>
@@ -17,34 +20,51 @@
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <script>
         const ROOM_ID = "<%=roomId%>"
+        const username = "<%=username%>"
         console.log(ROOM_ID)
     </script>
 </head>
+
 <body>
-    
-    <div id="video-grid">
-        
-    </div>
-    <div class="controls">
-        <div class="audio">
-            <span>mute</span>
+
+    <div id="sections">
+        <div class="controls">
+            <div class="audio">
+                <i class="fa-solid fa-microphone fa-beat-fade" title="Mic is On"></i>
+                <!-- <span>mute</span> -->
+            </div>
+            <div class="video">
+                <i class="fa-solid fa-camera fa-beat-fade"></i>
+                <!-- <span>Hide</span> -->
+            </div>
         </div>
-        <div class="video">
-            <span>Hide</span>
+        <div id="video-grid">
+            <div class="main-video ">
+
+            </div>
+            <div class="other-videos">
+                
+            </div>
+        </div>
+        <div id="chatbox">
+            <div class="heading">
+                <span>Chat Box</span>
+            </div>
+            <div class="messages">
+                <ul>
+
+                </ul>
+            </div>
+            <div id="text">
+                <input type="text" name="text" id="" placeholder="Type a Message">
+            </div>
         </div>
     </div>
-    <div class="messages">
-        <ul>
-            
-        </ul>
-    </div>
-    <div id="text">
-        <input type="text" name="text" id="">
-    </div>
-    <div id="room-id">
-        <%= roomId%>
-    </div>
-   
+
+
+    <!-- fontawesome  -->
+    <script src="https://kit.fontawesome.com/e784f7575e.js" crossorigin="anonymous"></script>
     <script src="/js/home.js"></script>
 </body>
+
 </html>
