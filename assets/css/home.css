@@ -89,14 +89,25 @@ i{
     flex-direction: column;
     justify-content: space-between;
 }
+
 .heading{
     text-align: center;
     font-size: 1.6rem;
     border-bottom: 1px solid rgb(83, 73, 73);
 }
+
+.messages{
+    overflow: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.messages::-webkit-scrollbar{
+    display: none;
+}
 ul{
     list-style: none;
     padding: 0px;
+    
 }
 li{
     display: flex;
@@ -114,6 +125,9 @@ li{
     text-align:justify ;
     overflow-wrap: break-word;
 }
+/* #msg-content::-webkit-scrollbar{
+    display: none;
+} */
 span{
     overflow-wrap: anywhere;
     padding: 5px;

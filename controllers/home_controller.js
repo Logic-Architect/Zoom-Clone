@@ -14,8 +14,8 @@ module.exports.index = function(req,res){
 module.exports.home = function(req,res){
 
     // console.log(req.params)
-    console.log(req.query)
-    console.log(res.locals)
+    // console.log(req.query)
+    // console.log(res.locals)
     return res.render('home',{
         title : "Zoom",
         roomId : req.params.room,
